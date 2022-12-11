@@ -1,0 +1,4 @@
+@import '../sass/mixins';
+.test{
+  @include ffMainBold;
+}

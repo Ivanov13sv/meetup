@@ -1,0 +1,79 @@
+.header {
+    background-color: var(--color-default);
+    &__body {
+        display: flex;
+        height: 120px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 80px;
+    }
+    &__nav {
+        display: flex;
+        gap: 35px;
+        &__link {
+            color: var(--color-bold);
+            text-decoration: none;
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                background-color: var(--color-accent);
+                height: 4px;
+                width: 0;
+                border-radius: 5px;
+                transition: width 0.3s ease;
+            }
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+        &__link--active {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+    &__controls {
+        display: flex;
+        gap: 20px;
+        margin-left: auto;
+        &__btn {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            width: 30px;
+            height: 30px;
+            transition: transform .2s ease;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .logo {
+        display: grid;
+        grid-template-areas: 'logo philosophy' 'logo league';
+        gap: 8px 30px;
+        &__app {
+            color: var(--color-bold);
+            font-size: var(--fs-logo);
+            font-family: var(--ff-secondary);
+            grid-area: logo;
+            pointer-events: none;
+        }
+        &__philosophy {
+            grid-area: philosophy;
+            max-width: 192px;
+        }
+
+        &__league {
+            grid-area: league;
+            max-width: 95.56px;
+        }
+    }
+}

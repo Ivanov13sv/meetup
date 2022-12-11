@@ -1,0 +1,30 @@
+<header class="header">
+    <app-container>
+        <div class="header__body">
+            <div class="header__logos logo">
+                <a class="logo__app">MeetUps</a>
+                <img class="logo__philosophy" src="assets/img/philosophy.png" />
+                <img class="logo__league" src="assets/img/league.png" />
+            </div>
+            <nav class="header__nav" *ngIf="isLoggedIn">
+                <a class="header__nav__link" routerLinkActive="header__nav__link--active" routerLink="/meetups">Все митапы</a>
+                <a class="header__nav__link" routerLinkActive="header__nav__link--active" routerLink="/my-meetups">Мои митапы</a>
+                <a class="header__nav__link" routerLinkActive="header__nav__link--active" *ngIf="isAdmin" routerLink="/users">Пользователи</a>
+            </nav>
+            <div class="header__controls" *ngIf="isLoggedIn; else elseBlock">
+                <button class="header__controls__btn">
+                    <img src="assets/img/icons/settings.svg" />
+                </button>
+                <button class="header__controls__btn" (click)="logout()">
+                    <img src="assets/img/icons/exit.svg" />
+                </button>
+            </div>
+
+            <ng-template #elseBlock>
+                <button class="header__controls__btn">
+                    <img src="assets/img/icons/profile.svg" />
+                </button>
+            </ng-template>
+        </div>
+    </app-container>
+</header>
