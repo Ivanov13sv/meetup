@@ -1,0 +1,10 @@
+<div class="auth">
+    <form class="form" [formGroup]="form" (submit)="onSubmitHandler()">
+        <input placeholder="Login" class="form__input" formControlName="login"/>
+        <input
+            placeholder="Password"
+            class="form__input form__input--password" formControlName="password"/>
+        <a class="form__link">How to create account?</a>
+        <button class="form__button">Log in</button>
+    </form>
+</div>
