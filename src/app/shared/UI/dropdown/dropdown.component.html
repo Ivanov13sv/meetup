@@ -1,0 +1,25 @@
+<div
+    class="dropdown"
+    [ngClass]="{
+        dropdown: true,
+        'dropdown--open': isDropdownOpen,
+        disabled: disabled
+    }"  appClickOutside (clickOutside)="isDropdownOpen= false">
+    <div class="dropdown__select" (click)="toggleDropdown()">
+        <span class="dropdown__active-option">{{
+            activeOption | lowercase
+        }}</span>
+        <img class="dropdown__btn" src="assets/img/icons/chevron.svg" />
+    </div>
+    <ul class="dropdown__menu">
+        <li
+            class="dropdown__item"
+            #option
+            *ngFor="let option of options"
+            (click)="onChooseHandler(option)"
+            >
+           
+            {{ option | lowercase  }}
+
+    </ul>
+</div>

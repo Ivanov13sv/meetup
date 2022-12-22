@@ -1,0 +1,33 @@
+.btn {
+    font-size: var(--fs-midd);
+    line-height: 133%;
+    padding: 10.5px 22.5px;
+    background-color: var(--color-info);
+    color: var(--color-bold);
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &.primary {
+        background-color: var(--color-primary);
+        color: var(--color-secondary);
+    }
+    &.accent {
+        background-color: var(--color-accent);
+    }
+    &.secondary {
+        background-color: var(--color-secondary);
+    }
+    &:hover{
+        filter: brightness(80%);
+    }
+    &:active{
+        filter: brightness(60%);
+    }
+
+    @media (max-width:550px) {
+        font-size: var(--fs-sm);
+        letter-spacing: 0;
+        padding: 5px 10px;
+    }
+}

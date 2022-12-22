@@ -1,0 +1,40 @@
+.add-user-form {
+    &.empty-fields {
+        background-color: red;
+    }
+    label {
+        position: relative;
+        color: var(--color-bold);
+
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--color-default);
+    align-items: flex-end;
+    &__field {
+        background-color: transparent;
+        padding: 10px;
+        border: 3px solid var(--color-info);
+        border-radius: 5px;
+        color: var(--color-bold);
+        font-size: var(--fs-midd);
+        letter-spacing: 0.5px;
+        &.is_invalid {
+            border: 3px solid var(--color-error);
+            // background-color: rgba(255, 0, 0, 0.247);
+        }
+        &.is_valid {
+            background-color: rgba(0, 255, 55, 0.247);
+        }
+        &.pending {
+            background-color: rgba(47, 0, 255, 0.247);
+        }
+    }
+    &__btn {
+        align-self: flex-end;
+    }
+    .error{
+        color: var(--color-error);
+    }
+}

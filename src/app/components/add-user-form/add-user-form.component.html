@@ -1,0 +1,43 @@
+<form class="add-user-form" [formGroup]="addForm" (submit)="onSubmitHandler()">
+    <label>
+        Login -
+        <input
+            [ngClass]="{
+                'add-user-form__field': true,
+                is_invalid: email.invalid && (email.dirty || email.touched),
+                is_valid: email.valid && email.dirty
+            }"
+            placeholder="example@mail.ru"
+            formControlName="email" />
+    </label>
+    <label>
+        Password -
+        <input
+            [ngClass]="{
+                'add-user-form__field': true,
+                is_invalid: password.invalid && (password.dirty || password.touched),
+                is_valid: password.valid && password.dirty
+            }"
+            placeholder="QwErTy1234"
+            formControlName="password" />
+    </label>
+    <label>
+        FIO -
+        <input
+            [ngClass]="{
+                'add-user-form__field': true,
+                is_invalid: fio.invalid && (fio.dirty || fio.touched),
+                is_valid: fio.valid && fio.dirty
+            }"
+            placeholder="John Doe"
+            formControlName="fio" />
+    </label>
+    <div class="error" *ngIf="isEmailExists">Данные email занят</div>
+    <div class="error" *ngIf="incorrectEmail">Введите корректный email</div>
+    <div class="error" *ngIf="addForm.invalid && addForm.touched">Поля формы не могут быть пустые</div>
+
+    <app-button
+        type="submit"
+        class="add-user-form__btn"
+        text="Create"></app-button>
+</form>

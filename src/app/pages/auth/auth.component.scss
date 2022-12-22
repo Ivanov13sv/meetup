@@ -10,8 +10,9 @@
         font-size: var(--fs-midd);
         gap: 26px 97px;
         display: grid;
-        max-width: 342px;
-         grid-template-columns: 2fr;
+        // max-width: 342px;
+        min-width: 340px;
+        grid-template-columns: 2fr;
         justify-content: space-between;
         &__input {
             font-family: inherit;
@@ -24,8 +25,12 @@
             color: var(--color-bold);
             font-size: var(--fs-midd);
             letter-spacing: 0.05rem;
+            border: 3px solid transparent;
+            &.invalid {
+                border: 3px solid var(--color-accent);
+            }
             &--password {
-                margin-bottom: 37px;
+                margin-bottom: 20px;
             }
             &::placeholder {
                 color: var(--color-primary);
@@ -36,6 +41,11 @@
             color: var(--color-info);
             text-decoration: underline;
             cursor: pointer;
+            max-width: 150px;
+        }
+        &:nth-child(1){
+            // align-self: center;
+            // background-color: red;
         }
 
         &__button {
@@ -49,13 +59,24 @@
             font-family: var(--ff-main);
             text-transform: capitalize;
             cursor: pointer;
-            transition: filter .1s ease;
-            &:hover{
+            transition: filter 0.1s ease;
+            &:hover {
                 filter: brightness(80%);
             }
-            &:active{
+            &:active {
                 filter: brightness(65%);
             }
         }
+        &__footer{
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+        }
     }
+.auth__spinner{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}    
 }

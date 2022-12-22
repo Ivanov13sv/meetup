@@ -1,0 +1,25 @@
+.users-list {
+    max-width: 851px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    
+    .add-btn{
+        // background-color: red;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+    }
+}
+
+// .users-list {
+//     max-width: 851px;
+//     margin: 0 auto;
+
+//     .user-item{
+//         background-color: var(--color-default);
+//         display: flex;
+//     }
+// }

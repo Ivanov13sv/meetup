@@ -1,0 +1,30 @@
+.notification{
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    z-index: 50;
+    top: 10%;
+    right: 0;
+    width: 300px;
+    &.success{
+        background-color: green;
+    }
+    &.error{
+        background-color: var(--color-error);
+    }
+    &.warning{
+        background-color: var(--color-accent);
+    }
+    &__btn{
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border: none;
+        color: white;
+        background-color: transparent;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}

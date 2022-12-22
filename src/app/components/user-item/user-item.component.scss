@@ -1,0 +1,97 @@
+.user-item {
+    border: 0.3px solid var(--color-primary);
+    height: 60px;
+    background-color: var(--color-default);
+    display: flex;
+    justify-content: center;
+
+    &__field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:nth-child(3) {
+            max-width: 190px;
+        }
+        &:not(:last-child) {
+            border-right: 0.3px solid var(--color-primary);
+        }
+    }
+    .field {
+        padding: 0 20px;
+        &__input {
+            text-align: center;
+            border: none;
+            padding: 5px 0;
+            border: 3px solid transparent;
+            border-radius: 5px;
+            background-color: transparent;
+            color: var(--color-bold);
+            font-size: var(--fs-midd);
+            width: 100%;
+            &.is_invalid{
+                border: 3px solid red;
+                background-color: rgba(255, 0, 0, 0.247);
+            }
+            &.is_valid{
+                background-color: rgba(0, 255, 55, 0.247);
+            }
+            &.pending{
+                background-color: rgba(47, 0, 255, 0.247);
+            }
+        }
+        &__select {
+            display: flex;
+        }
+        &--password {
+            padding: 0 30px;
+            overflow: hidden;
+            // flex: 0 1 auto;
+        }
+        &--role {
+            width: 100%;
+        }
+    }
+    > * {
+        flex: 1 1 auto;
+    }
+
+    &__buttons {
+        max-width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 5px 19px;
+        height: 100%;
+    }
+
+    &__btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--color-accent);
+        padding: 4px;
+        border-radius: 5px;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &:hover{
+            transform: scale(1.1);
+        }
+        &--confirm {
+            color: green;
+            font-weight: 500;
+            font-size: var(--fs-midd);
+        }
+    }
+
+    &.edit {
+        .field__input {
+            border: 3px solid var(--color-secondary);
+        }
+        .field__input.is-invalid {
+            background-color: red;
+        }
+    }
+}

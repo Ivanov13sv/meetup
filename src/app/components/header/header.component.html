@@ -1,5 +1,4 @@
 <header class="header">
-    <app-container>
         <div class="header__body">
             <div class="header__logos logo">
                 <a class="logo__app">MeetUps</a>
@@ -12,9 +11,9 @@
                 <a class="header__nav__link" routerLinkActive="header__nav__link--active" *ngIf="isAdmin" routerLink="/users">Пользователи</a>
             </nav>
             <div class="header__controls" *ngIf="isLoggedIn; else elseBlock">
-                <button class="header__controls__btn">
+                <!-- <button class="header__controls__btn">
                     <img src="assets/img/icons/settings.svg" />
-                </button>
+                </button> -->
                 <button class="header__controls__btn" (click)="logout()">
                     <img src="assets/img/icons/exit.svg" />
                 </button>
@@ -26,5 +25,4 @@
                 </button>
             </ng-template>
         </div>
-    </app-container>
 </header>

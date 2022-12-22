@@ -1,1 +1,13 @@
-<p>all-meetups works!</p>
+<section class="all-meetups">
+    <input placeholder="Поиск" class="all-meetups__search" [(ngModel)]="meetupsService.searchField"/>
+    <ul class="meetup-list">
+        <app-meetup-card
+            *ngFor="let meetup of slicedMeetups"
+            [meetup]="meetup"></app-meetup-card>
+    </ul>
+    <app-pagination
+        [currentPage]="currentPage"
+        [limit]="limit"
+        [total]="paginationService.total$ | async"
+        (changePage)="changePage($event)"></app-pagination>
+</section>

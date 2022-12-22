@@ -1,0 +1,13 @@
+<div
+    [ngClass]="{
+        notification: true,
+        success: notificationService.status === 'success',
+        warning: notificationService.status === 'warning',
+        error: notificationService.status === 'error'
+    }"
+    *ngIf="notificationService.error$ | async as error">
+    {{ error }}
+    <button (click)="notificationService.clean()" class="notification__btn">
+        &times;
+    </button>
+</div>
