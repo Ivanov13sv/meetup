@@ -1,1 +1,11 @@
-<p>my-meetups works!</p>
+<section>
+    <app-button
+        routerLink="/my-meetups/meetup-form"
+        text="Добавить митап"
+        colorType="secondary"></app-button>
+    <ul class="meetup-list">
+        <app-meetup-card
+            *ngFor="let meetup of meetupsService.myMeetups"
+            [meetup]="meetup"></app-meetup-card>
+    </ul>
+</section>

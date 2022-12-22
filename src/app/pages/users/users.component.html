@@ -1,1 +1,14 @@
-<p>users works!</p>
+<ul class="users-list">
+    <app-user-item
+        *ngFor="let user of usersService.users"
+        [user]="user"></app-user-item>
+    <app-button
+        (click)="modalService.open()"
+        class="add-btn"
+        text="Add new user"
+        colorType="primary"></app-button>
+</ul>
+
+<app-modal title="add new user" *ngIf="modalService.isVisible$ | async">
+    <app-add-user-form></app-add-user-form>
+</app-modal>

@@ -1,4 +1,3 @@
-@import './mixins';
 
 :root {
     // color
@@ -9,10 +8,12 @@
     --color-primary: #b4b4c0;
     --color-secondary: #4c3f78;
     --color-info: #008697;
+    --color-error: rgb(175, 5, 5);
 
     //font-family
     --ff-main: 'Open Sans';
     --ff-secondary: 'Open Sans Hebrew Condensed';
+    --ff-cherryBomb: 'Cherry Bomb';
 
     //font-size
     --fs-logo: 56px;
@@ -21,9 +22,8 @@
     --fs-midd: 18px;
     --fs-sm: 14px;
 
-    //font-weight
-
-    --fw-bold: 700;
+    --media-breakpoints: 'max-width: 1200px';
+    
 }
 * {
     margin: 0;
@@ -72,8 +72,18 @@ button{
     font-size: inherit;
 }
 
+body{
+    background-color: var(--color-bg);
+}
+
 
 @font-face {
     font-family: "Open Sans Hebrew Condensed";
     src: local("Open Sans Hebrew Condensed"), url('../assets/fonts/OpenSansHebrewCondensed-Bold.ttf') format("truetype");
 }
+@font-face {
+    font-family: "Cherry Bomb";
+    src: local("Cherry Bomb"), url('../assets/fonts/CherryBomb-Regular.ttf') format("truetype");
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

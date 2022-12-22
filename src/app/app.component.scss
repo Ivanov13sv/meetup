@@ -1,4 +1,7 @@
-@import '../sass/mixins';
-.test{
-  @include ffMainBold;
+
+.main {
+    max-width: 1367px;
+    margin: 0 auto;
+    padding: 20px 35px;
+    position: relative;
 }

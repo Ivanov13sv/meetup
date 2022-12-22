@@ -1,20 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, delay, Observable, retry, tap, throwError } from 'rxjs';
+import {
+    catchError,
+    delay,
+    Observable,
+    retry,
+    tap,
+    throwError,
+    debounceTime,
+    debounce,
+} from 'rxjs';
 import { environment } from '../environments/environment';
+import { NotificationService } from './notification.service';
+import { INotification } from '../shared/models/notification.interface';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    baseUrl: string = `${environment.apiUrl}/auth`;
+    authUrl: string = `${environment.apiUrl}/auth`;
 
     public get token(): string | null {
         return localStorage.getItem('del_meetups_auth_token');
     }
 
-    constructor(public http: HttpClient, private router: Router) {}
+    constructor(
+        public http: HttpClient,
+        private router: Router,
+        private notificationService: NotificationService,
+        private spinnerService: SpinnerService
+    ) {}
 
     parseJwt(token: string) {
         let base64Url = token.split('.')[1];
@@ -42,18 +59,23 @@ export class AuthService {
     }
 
     private errorHandler() {
+        this.notificationService.handle(
+            'Неверный логин или пароль',
+            INotification.error
+        );
+        this.spinnerService.loading = false;
         return throwError(() => 'incorrect email or password');
     }
 
     login(email: string, password: string): Observable<{ token: string }> {
+        this.spinnerService.loading = true;
         return this.http
-            .post<{ token: string }>(`${this.baseUrl}/login`, {
+            .post<{ token: string }>(`${this.authUrl}/login`, {
                 email,
                 password,
             })
             .pipe(
-                delay(500),
-                retry(1),
+                delay(1100),
                 tap(res => {
                     if (res.token) {
                         localStorage.setItem(
@@ -61,9 +83,16 @@ export class AuthService {
                             res.token
                         );
                         this.router.navigate(['meetups']);
+                        console.log('hello');
                     }
                 }),
-                catchError(this.errorHandler.bind(this))
+                catchError(this.errorHandler.bind(this)),
+                tap(() =>
+                    this.notificationService.handle(
+                        `Добро пожаловать!`,
+                        INotification.succes
+                    )
+                )
             );
     }
 
@@ -77,4 +106,8 @@ export class AuthService {
             ? 'ADMIN'
             : 'USER';
     }
+
+    // createNewUser(value: any){
+    //     console.log(value)
+    // }
 }

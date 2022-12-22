@@ -1,0 +1,11 @@
+<button
+    (click)="onClicked.emit()"
+    [ngClass]="{
+        btn: true,
+        primary: colorType === 'primary',
+        secondary: colorType === 'secondary',
+        accent: colorType === 'accent'
+    }"
+    [type]="type">
+    {{ text }}
+</button>

@@ -1,0 +1,94 @@
+.meetup-form {
+    color: white;
+    max-width: 840px;
+    margin: 0 auto;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    &__input {
+        width: 100%;
+        border: 3px solid var(--color-secondary);
+        padding: 12px 20px;
+        border-radius: 5px;
+        background-color: transparent;
+        font-size: var(--fs-midd);
+        color: var(--color-bold);
+        &--shortTextarea {
+            min-height: 100px;
+            resize: none;
+        }
+        &--longTextarea {
+            min-height: 210px;
+            resize: none;
+        }
+        &.is-invalid{
+            background-color: red;
+        }
+    }
+
+    &__field {
+        position: relative;
+        label {
+            position: absolute;
+            max-width: 130px;
+            left: -130px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    &__mainInfo {
+        display: grid;
+        grid-template-areas: 'name .' 'date time' 'place .';
+        grid-template-columns: 1fr 262px;
+        gap: 30px 55px;
+    }
+    .mainInfo {
+        &--name {
+            grid-area: name;
+        }
+        &--date {
+            max-width: 260px;
+            grid-area: date;
+        }
+        &--time {
+            grid-area: time;
+        }
+        &--place {
+            grid-area: place;
+        }
+    }
+    .mainInfo {
+        width: 100%;
+    }
+    &__btns {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    input[type='time']::-webkit-calendar-picker-indicator,
+    input[type='datetime-local']::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
+    &__dropdown{
+        background-color: red;
+    }
+    &__err-message{
+        color: var(--color-accent);
+        background-color: var(--color-bg);
+        padding: 0 10px;
+        position: absolute;
+        top: -15%;
+        left: 5%;
+
+    }
+}
+

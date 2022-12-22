@@ -1,0 +1,26 @@
+.all-meetups {
+    background-color: var(--color-bg);
+    padding: 17px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    // align-items: center;
+    .meetup-list {
+        width: 100%;
+        max-width: 1367px;
+        margin: 0 auto;
+        padding: 0 35px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column-reverse;
+    }
+    &__search{
+        padding: 10px;
+        background-color: transparent;
+        border: 3px solid var(--color-accent);
+        border-radius: 5px;
+        color: var(--color-bold);
+    }
+}

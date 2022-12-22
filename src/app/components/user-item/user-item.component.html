@@ -1,0 +1,57 @@
+<li class="user-item" [class.edit]="editMode" >
+    <form class="user-item" [formGroup]="form">
+        <div class="user-item__field field">
+            <input
+                class="field__input"
+                [ngClass]="{
+                    field__input: true,
+                    is_invalid: email.invalid && email.dirty,
+                    is_valid: email.valid && email.dirty
+                }"
+                [value]="user.email"
+                formControlName="email" />
+        </div>
+        <div class="user-item__field field field--password">
+            <input
+                type="password"
+                class="field__input"
+                [value]="user.password"
+                formControlName="password" />
+        </div>
+        <div class="user-item__field field field--role">
+            <div class="field__input">
+                <app-dropdown
+                    [disabled]="!editMode"
+                    [options]="userService.roles"
+                    [activeOption]="user.roles[0].name"
+                    (chooseOption)="chooseRole($event)">
+                    ></app-dropdown
+                >
+               
+
+            </div>
+        </div>
+        <div class="user-item__buttons" *ngIf="!confirmService.confirm; else elseBlock">
+            <button class="user-item__btn" (click)="confirmService.openConfirm()">
+                <img src="assets/img/icons/cross.svg" />
+            </button>
+            <button class="user-item__btn" (click)="toggleEditMode()">
+                <img src="assets/img/icons/pen.svg" />
+            </button>
+        </div>
+        <ng-template #elseBlock>
+            <div class="user-item__buttons">
+                <button
+                    class="user-item__btn user-item__btn--confirm"
+                    (click)="
+                        editMode ? onUpdateUserHandler() : onRemoveUserHandler(user.id)
+                    ">
+                    &#10003;
+                </button>
+                <button class="user-item__btn" (click)="closeConfirm()">
+                    &#10060;
+                </button>
+            </div>
+        </ng-template>
+    </form>
+</li>

@@ -1,0 +1,123 @@
+<form [formGroup]="form" class="meetup-form" (submit)="onSubmitHandler()">
+    <div class="meetup-form__mainInfo mainInfo">
+        <div class="meetup-form__field mainInfo--name">
+            <label class="field__label" for="name">Название:</label>
+            <input
+                [ngClass]="{
+                    'meetup-form__input': true
+                }"
+                placeholder="Example"
+                id="name"
+                formControlName="name" />
+            <div
+                class="meetup-form__err-message"
+                *ngIf="name.invalid && name.touched">
+                Обязательное поле
+            </div>
+        </div>
+        <div class="meetup-form__field mainInfo--date">
+            <label class="field__label" for="date">Дата: </label>
+            <input
+                [ngClass]="{
+                    'meetup-form__input': true
+                }"
+                placeholder="Example"
+                type="datetime-local"
+                min="2021-06-07T14:47"
+                id="date"
+                formControlName="date" />
+            <div
+                class="meetup-form__err-message"
+                *ngIf="date.invalid && date.touched">
+                Обязательное поле
+            </div>
+        </div>
+
+        <div class="meetup-form__field mainInfo--time">
+            <label class="field__label" for="time">Длительность: </label>
+            <div class="meetup-form__input">
+                <app-dropdown
+                    [disabled]="false"
+                    [options]="meetupDuration"
+                    [activeOption]="chosenDuration + ''"
+                    (chooseOption)="test($event)">
+                </app-dropdown>
+            </div>
+        </div>
+        <div class="meetup-form__field mainInfo--place">
+            <label class="field__label" for="place">Место: </label>
+            <input
+                class="meetup-form__input"
+                placeholder="Example"
+                id="place"
+                formControlName="location" />
+            <div
+                class="meetup-form__err-message"
+                *ngIf="location.invalid && location.touched">
+                Обязательное поле
+            </div>
+        </div>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr">Короткое описание: </label>
+        <textarea
+            class="meetup-form__input meetup-form__input--shortTextarea"
+            id="shortDescr"
+            formControlName="description"></textarea>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr"
+            >Подробное описание:
+        </label>
+        <textarea
+            class="meetup-form__input meetup-form__input--longTextarea"
+            id="shortDescr"
+            formControlName="full_description"></textarea>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr">Целевая аудитория: </label>
+        <textarea
+            placeholder="Поколение пепси, зумеры..."
+            class="meetup-form__input meetup-form__input--shortTextarea"
+            id="shortDescr"
+            formControlName="target_audience"></textarea>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr">Что надо знать?</label>
+        <textarea
+            placeholder="1. Любой функциональный язык программирования&#10;2. Принципы строгой типизации&#10;3. Третий закон Ньютона"
+            class="meetup-form__input meetup-form__input--longTextarea"
+            id="shortDescr"
+            formControlName="need_to_know"></textarea>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr">Что будет? </label>
+        <textarea
+            placeholder="1. Научу готовить пиццу&#10;2. Расскажу про колбасу"
+            class="meetup-form__input meetup-form__input--longTextarea"
+            id="shortDescr"
+            formControlName="will_happen"></textarea>
+    </div>
+    <div class="meetup-form__field">
+        <label class="field__label" for="shortDescr"
+            >Почему надо обязательно прийти?
+        </label>
+        <textarea
+            placeholder="Example"
+            class="meetup-form__input meetup-form__input--longTextarea"
+            id="shortDescr"
+            formControlName="reason_to_come"></textarea>
+    </div>
+    <div class="meetup-form__btns">
+        <app-button
+            colorType="accent"
+            type="button"
+            text="Удалить"
+            (onClicked)="onDeleteHandler()"></app-button>
+        <app-button text="Отменить" (onClicked)="locationService.back()"></app-button>
+        <app-button
+            colorType="secondary"
+            text="Сохранить"
+            type="submit"></app-button>
+    </div>
+</form>

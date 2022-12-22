@@ -1,0 +1,83 @@
+<li class="card" [class.completed]="isMeetupPassed" [class.isOpen]="isOpenInfo" appClickOutside (clickOutside)="isOpenInfo = false">
+    <div class="card__content">
+        <div class="card__header">
+            <h5 class="card__title">
+                {{ meetup.name || 'название отсутствует' | uppercase }}
+            </h5>
+            <span class="card__followers">{{ followers }}</span>
+        </div>
+
+        <p class="card__descr">
+            {{ meetup.description || 'Описание отсутствует' | titlecase }}
+            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            voluptatibus qui numquam? Rem nulla delectus tenetur. Nemo porro
+            officiis saepe, ut molestiae, nulla commodi quaerat expedita
+            temporibus odio necessitatibus odit sit. Sunt dolores ipsam nisi
+            quae, dicta, qui alias expedita, eum ea officia beatae molestias
+            sequi cum neque voluptate laboriosam? -->
+        </p>
+        <div class="card__author">
+            <img src="assets/img/icons/profile.svg" [alt]="meetup.owner.fio" />
+            <span class="card__author__fio">{{
+                meetup.owner?.fio || 'Аноним' | titlecase
+            }}</span>
+        </div>
+        <div class="card__details card-details">
+            <div class="card-details__block">
+                <h6 class="card-details__title">Целевая аудитория</h6>
+                <p class="card-details__content">
+                    {{ meetup.target_audience }}
+                </p>
+            </div>
+            <div class="card-details__block">
+                <h6 class="card-details__title">Что нужно знать?</h6>
+                <p class="card-details__content">
+                    {{ meetup.need_to_know }}
+                </p>
+            </div>
+            <div class="card-details__block">
+                <h6 class="card-details__title">Что будет?</h6>
+                <p class="card-details__content">
+                    {{ meetup.will_happen }}
+                </p>
+            </div>
+            <div class="card-details__block">
+                <h6 class="card-details__title">
+                    Почему надо обязательно прийти?
+                </h6>
+                <p class="card-details__content">
+                    {{ meetup.reason_to_come }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="card__info">
+        <div class="card__date">
+            {{ meetup.time | date : 'dd.MM.yy HH:mm' : 'GMT' }}
+        </div>
+        <span class="card__info__status">{{
+            isMeetupPassed ? 'Проведено' : meetup.location
+        }}</span>
+
+        <div class="card__buttons">
+            <app-button
+                *ngIf="isOwner"
+                (onClicked)="
+                    router.navigate(['my-meetups/meetup-form'], {
+                        state: { meetup }
+                    })
+                "
+                text="Редактировать"></app-button>
+            <app-button
+                *ngIf="!isMeetupPassed && !isOwner"
+                [text]="!isSubsriber ? 'Пойду' : 'Не смогу пойти'"
+                (onClicked)="onSubscribeHandler()"></app-button>
+            <button
+                class="card__details-btn"
+                [class.open]="isOpenInfo"
+                (click)="toggleInfo()">
+                <img src="assets/img/icons/arrow.svg" />
+            </button>
+        </div>
+    </div>
+</li>
